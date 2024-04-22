@@ -38,8 +38,9 @@ sequelize
     console.error("Unable to connect to the database:", err);
   });
 
-module.exports = { sequelize, Models: {} };
-
+module.exports = { sequelize /*, Models: {}*/ };
+/*
 for (var m of Object.keys(Models)) {
-  module.exports.Models[m] = sequelize.define(m, Models[m]);
+  module.exports.Models[m] = Models[m](sequelize);
 }
+*/

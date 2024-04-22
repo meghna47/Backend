@@ -1,4 +1,4 @@
-const { Models } = require("../database.js");
+const Models = require("../models");
 const services = require("../services");
 
 const login = async (req, res) => {
@@ -12,7 +12,7 @@ const login = async (req, res) => {
     return;
   }
 
-  let { dataValues: user } = await Models.user.findOne({
+  let { dataValues: user } = await Models.users.findOne({
     where: { username }
   });
 
@@ -51,7 +51,7 @@ const register = async (req, res) => {
   }
 
   // Check if username already exists
-  let user = await Models.user.findOne({
+  let user = await Models.users.findOne({
     where: { username }
   });
 
@@ -60,7 +60,7 @@ const register = async (req, res) => {
   }
 
   const newUser = { username, password, first_name, last_name };
-  await Models.user.create(newUser);
+  await Models.users.create(newUser);
   res.status(201).json({ message: "User registered successfully" });
 };
 

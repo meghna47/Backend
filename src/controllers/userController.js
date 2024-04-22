@@ -1,5 +1,5 @@
 const services = require("../services");
-const { Models } = require("../database.js");
+const Models = require("../models");
 
 const createUser = async (req, res) => {
   const { username, password, first_name, last_name } = req.body;
@@ -10,7 +10,7 @@ const createUser = async (req, res) => {
   }
 
   // Check if username already exists
-  let user = await Models.user.findOne({
+  let user = await Models.users.findOne({
     where: { username }
   });
 
@@ -19,7 +19,7 @@ const createUser = async (req, res) => {
   }
 
   const newUser = { username, password, first_name, last_name };
-  await Models.user.create(newUser);
+  await Models.users.create(newUser);
   res.status(201).json({ message: "User registered successfully" });
 };
 
