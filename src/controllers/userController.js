@@ -11,7 +11,14 @@ const createUser = async (req, res) => {
 
   // Check if username already exists
   let user = await Models.users.findOne({
-    where: { username }
+    where: { username },
+    attributes: [
+      "username",
+      "first_name",
+      "last_name",
+      "profile_picture",
+      "phone_number"
+    ]
   });
 
   if (user) {
@@ -23,6 +30,20 @@ const createUser = async (req, res) => {
   res.status(201).json({ message: "User registered successfully" });
 };
 
+const getUser = async (req, res) => {
+  try {
+    const { Id } = req.params;
+    let user = await Models.users.findOne({
+      where: { Id }
+    });
+
+    res.status(200).json(user);
+  } catch (ex) {
+    res.status(500).json(ex?.message);
+  }
+};
+
 module.exports = {
-  createUser
+  createUser,
+  getUser
 };

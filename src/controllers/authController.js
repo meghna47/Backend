@@ -24,7 +24,11 @@ const login = async (req, res) => {
 
   const { token: _token, expiresAt } = services.auth.createJwt(user);
 
-  res.send({ token: _token, expiresAt, user });
+  res.send({
+    token: _token,
+    expiresAt,
+    user: { Id: user.id, username: user.username }
+  });
 };
 
 const checkAuth = (req, res, next) => {
