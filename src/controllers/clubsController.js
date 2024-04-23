@@ -13,16 +13,16 @@ const getClubs = async (req, res) => {
 
 const getClub = async (req, res) => {
   try {
-    const { Id } = req.body;
+    const { Id } = req.params;
     let club = await Models.Clubs.findOne({
       where: { Id },
       include: [
         {
           model: Models.users,
           as: "ClubPresident",
-          attributes: ["username", "first_name", "last_name"]
-        }
-      ]
+          attributes: ["username", "first_name", "last_name", "profile_picture", "phone_number"],
+        },
+      ],
     });
 
     res.status(200).json(club);
