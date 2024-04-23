@@ -5,28 +5,32 @@ const users = sequelize.define(`users`, {
   id: {
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV4,
-    primaryKey: true
+    primaryKey: true,
   },
   username: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   password: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   first_name: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   last_name: {
     type: Sequelize.STRING,
-    allowNull: true
+    allowNull: true,
   },
   profile_picture: {
     type: Sequelize.BLOB,
-    allowNull: true
-  }
+    allowNull: true,
+  },
+  phone_number: {
+    type: Sequelize.NUMBER,
+    allowNull: true,
+  },
 });
 
 module.exports = users;
